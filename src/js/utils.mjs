@@ -28,3 +28,18 @@ export function getParams(params) {
   const product = urlParams.get(params);
   return product;
 }
+
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  const htmlStrings = list.map(templateFn);
+  // if clear is true we need to clear out the contents of the parent.
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
