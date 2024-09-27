@@ -36,9 +36,16 @@ export default class ProductDetails {
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
   }
+  
   addToCart() {
-    setLocalStorage("so-cart", this.product);
+    let cartArray = getLocalStorage("so-cart");
+    if (!Array.isArray(cartArray)) {
+      cartArray = [];
+    }
+    cartArray.push(this.product);
+    setLocalStorage("so-cart", cartArray);
   }
+
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
