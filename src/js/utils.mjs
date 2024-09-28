@@ -32,15 +32,10 @@ export function getParams(params) {
   return product;
 }
 
-// render a list of items using a template
-export function renderListWithTemplate(templateFn, 
-                                       parentElement, 
-                                       list, 
-                                       position = "afterbegin", 
-                                       clear = false) {
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(templateFn);
   if (clear) {
     parentElement.innerHTML = "";
   }
-  const html = list.map(templateFn).join("");
-  parentElement.insertAdjacentHTML(position, html);
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
