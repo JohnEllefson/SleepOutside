@@ -40,8 +40,22 @@ export default class ProductDetails {
       if (!Array.isArray(cartArray)) {
           cartArray = [];
       }
-      cartArray.push(this.product);
+
+      const itemsInCart = cartArray.find(item => item.id === this.product.Id);
+
+      if (itemsInCart) {
+        itemsInCart.quantity += 1;
+      }
+      else {
+        this.product.quantity = 1;
+        cartArray.push(this.product);
+      }    
+
       setLocalStorage("so-cart", cartArray);
+
+      updateCartQuantity();
+
+      saveCartQuantity(cartArray);
   }
 
   renderProductDetails(selector) {
@@ -51,4 +65,23 @@ export default class ProductDetails {
       productDetailsTemplate(this.product)
     );
   }
+}
+
+function updateCartQuantity() {
+  const iconCartSpan = document.querySelector('.icon-cart');
+  if (iconCartSpan) {
+    let cartItems = getLocalStorage('so-cart');
+    let totalQuantity = 0;
+  if (cartItems) {
+      totalQuantity = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
+    }
+    iconCartSpan.innerHTML = totalQuantity;
+  }
+}
+
+function saveCartQuantity(cartItems) {
+  // we get again the total in cart
+  const totalQuantity = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
+  // and we save in the local storage
+  localStorage.setItem('so-cart-quantity', totalQuantity);
 }

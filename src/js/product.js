@@ -7,3 +7,4 @@ const dataSource = new ProductData("tents");
 
 const product = new ProductDetails(productId, dataSource);
 product.init();
+document.querySelector(".icon-cart").innerHTML = localStorage.getItem('so-cart-quantity') || 0;
