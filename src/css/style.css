@@ -166,6 +166,14 @@ button {
   width: 100%;
 }
 
+.cart-footer-hide {
+  visibility: hidden;
+}
+
+.cart-total {
+  font-size: larger;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
