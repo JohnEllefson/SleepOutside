@@ -1,4 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
+import { saveCartQuantity } from "./ProductDetails.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -8,8 +9,14 @@ function renderCartContents() {
   if (cartItems != null) {
     htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
-    document.querySelector(".icon-cart").innerHTML = localStorage.getItem('so-cart-quantity')||0;
+    document.querySelector(".icon-cart").innerHTML =
+      localStorage.getItem("so-cart-quantity") || 0;
   }
+
+  const removeItemBtns = document.querySelectorAll(".removeItemBtn");
+  removeItemBtns.forEach((button) => {
+    button.addEventListener("click", removeItem);
+  });
 }
 
 function isCartFilled() {
@@ -36,6 +43,20 @@ function displayCheckoutTotal() {
   }
 }
 
+function removeItem(event) {
+  const itemId = event.target.dataset.id;
+  const currentItems = getLocalStorage("so-cart");
+
+  if (currentItems) {
+    const updatedCartItems = currentItems.filter((item) => item.Id !== itemId);
+    localStorage.setItem("so-cart", JSON.stringify(updatedCartItems));
+    saveCartQuantity(updatedCartItems);
+  }
+
+  renderCartContents();
+  displayCheckoutTotal();
+}
+
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
@@ -50,6 +71,7 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class='cart-card__quantity'>qty: ${item.quantity}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
+  <span class="removeItemBtn" data-id=${item.Id}>❌</span>
 </li>`;
 
   return newItem;
