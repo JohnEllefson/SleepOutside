@@ -8,4 +8,5 @@ const productId = getParams("product");
 const product = new ProductDetails(productId, dataSource);
 
 product.init();
-document.querySelector(".icon-cart").innerHTML = localStorage.getItem('so-cart-quantity') || 0;
+document.querySelector(".icon-cart").innerHTML =
+  localStorage.getItem("so-cart-quantity") || 0;

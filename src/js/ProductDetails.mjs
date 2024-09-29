@@ -80,7 +80,7 @@ function updateCartQuantity() {
   }
 }
 
-function saveCartQuantity(cartItems) {
+export function saveCartQuantity(cartItems) {
   // we get again the total in cart
   const totalQuantity = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
   // and we save in the local storage
