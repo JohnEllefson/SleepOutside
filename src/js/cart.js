@@ -48,9 +48,18 @@ function removeItem(event) {
   const currentItems = getLocalStorage("so-cart");
 
   if (currentItems) {
-    const updatedCartItems = currentItems.filter((item) => item.Id !== itemId);
-    localStorage.setItem("so-cart", JSON.stringify(updatedCartItems));
-    saveCartQuantity(updatedCartItems);
+    //If we have matching id's, it will return an index, if there is not match, it will return -1 meaning not found
+    const itemIndex = currentItems.findIndex(
+      (item) => item.Id.toString() === itemId.toString(),
+    );
+    //If it is found then ...
+    if (itemIndex !== -1) {
+      //It will eliminate just one of the element with the matching id
+      currentItems.splice(itemIndex, 1);
+    }
+
+    localStorage.setItem("so-cart", JSON.stringify(currentItems));
+    saveCartQuantity(currentItems);
   }
 
   renderCartContents();
