@@ -3,16 +3,6 @@ import { saveCartQuantity } from "./ProductDetails.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 import ShoppingCart from "./ShoppingCart.mjs";
 
-async function main() {
-  await loadHeaderFooter();
-
-  renderCartContents();
-  displayCheckoutTotal();
-
-  document.querySelector(".icon-cart").innerHTML =
-    localStorage.getItem("so-cart-quantity") || 0;
-}
-
 function renderCartContents() {
   const cart = new ShoppingCart("so-cart", ".product-list");
   cart.renderCartContents();
@@ -21,6 +11,11 @@ function renderCartContents() {
   removeItemBtns.forEach((button) => {
     button.addEventListener("click", removeItem);
   });
+}
+
+function updateCartQuantity() {
+  document.querySelector(".icon-cart").innerHTML =
+    localStorage.getItem("so-cart-quantity") || 0;
 }
 
 function isCartFilled() {
@@ -68,6 +63,15 @@ function removeItem(event) {
 
   renderCartContents();
   displayCheckoutTotal();
+  updateCartQuantity();
 }
 
-document.addEventListener("DOMContentLoaded", main);
+async function main() {
+  await loadHeaderFooter();
+
+  renderCartContents();
+  displayCheckoutTotal();
+  updateCartQuantity();
+}
+
+main();

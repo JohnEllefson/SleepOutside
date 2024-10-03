@@ -19,4 +19,4 @@ async function main() {
     localStorage.getItem("so-cart-quantity") || 0;
 }
 
-document.addEventListener("DOMContentLoaded", main);
+main();
