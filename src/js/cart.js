@@ -1,22 +1,21 @@
 import { getLocalStorage } from "./utils.mjs";
 import { saveCartQuantity } from "./ProductDetails.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+import ShoppingCart from "./ShoppingCart.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
-  let htmlItems;
-
-  // If items exist in the cart, create a template and inject it into the HTML
-  if (cartItems != null) {
-    htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    document.querySelector(".product-list").innerHTML = htmlItems.join("");
-    document.querySelector(".icon-cart").innerHTML =
-      localStorage.getItem("so-cart-quantity") || 0;
-  }
+  const cart = new ShoppingCart("so-cart", ".product-list");
+  cart.renderCartContents();
 
   const removeItemBtns = document.querySelectorAll(".removeItemBtn");
   removeItemBtns.forEach((button) => {
     button.addEventListener("click", removeItem);
   });
+}
+
+function updateCartQuantity() {
+  document.querySelector(".icon-cart").innerHTML =
+    localStorage.getItem("so-cart-quantity") || 0;
 }
 
 function isCartFilled() {
@@ -64,27 +63,15 @@ function removeItem(event) {
 
   renderCartContents();
   displayCheckoutTotal();
+  updateCartQuantity();
 }
 
-function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
-    <img
-      src="${item.Image}"
-      alt="${item.Name}"
-    />
-  </a>
-  <a href="#">
-    <h2 class="card__name">${item.Name}</h2>
-  </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class='cart-card__quantity'>qty: ${item.quantity}</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
-  <span class="removeItemBtn" data-id=${item.Id}>❌</span>
-</li>`;
+async function main() {
+  await loadHeaderFooter();
 
-  return newItem;
+  renderCartContents();
+  displayCheckoutTotal();
+  updateCartQuantity();
 }
 
-renderCartContents();
-displayCheckoutTotal();
+main();
