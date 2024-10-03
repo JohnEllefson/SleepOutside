@@ -47,7 +47,6 @@ export function renderWithTemplate(template, parent, data, callback) {
   }
 }
 
-
 export async function loadTemplate(path) {
   const html = await fetch(path).then(response => response.text());
   const template = document.createElement("template");
@@ -58,9 +57,8 @@ export async function loadTemplate(path) {
 export async function loadHeaderFooter() {
   let headerTemplate = await loadTemplate("/partials/header.html");
   let footerTemplate = await loadTemplate("/partials/footer.html");
-  let header = document.getElementById("header");
-  let footer = document.getElementById("footer");
+  let header = document.querySelector("#header");
+  let footer = document.querySelector("#footer");
   renderWithTemplate(headerTemplate.innerHTML, header);
   renderWithTemplate(footerTemplate.innerHTML, footer);
-  console.log(headerTemplate);
 }

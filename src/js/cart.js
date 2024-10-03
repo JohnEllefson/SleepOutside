@@ -2,7 +2,7 @@ import { getLocalStorage } from "./utils.mjs";
 import { saveCartQuantity } from "./ProductDetails.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
-loadHeaderFooter();
+await loadHeaderFooter();
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -88,6 +88,7 @@ function cartItemTemplate(item) {
 
   return newItem;
 }
+
 
 renderCartContents();
 displayCheckoutTotal();
