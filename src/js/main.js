@@ -2,8 +2,6 @@ import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
-
-
 // Create an instance of a ProductData object
 const productData = new ProductData("tents");
 const productList = new ProductList(
