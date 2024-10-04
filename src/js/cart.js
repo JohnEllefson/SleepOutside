@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 import { saveCartQuantity } from "./ProductDetails.mjs";
 
 function renderCartContents() {
@@ -86,5 +86,11 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-renderCartContents();
-displayCheckoutTotal();
+loadHeaderFooter().then(() => {
+  renderCartContents();
+  displayCheckoutTotal();
+  document.querySelector(".icon-cart").innerHTML =
+    localStorage.getItem("so-cart-quantity") || 0;
+});
+
+
