@@ -10,10 +10,10 @@ async function main() {
   const productId = getParams("product");
   const product = new ProductDetails(productId, dataSource);
 
-  product.init();
+product.init();
 
+loadHeaderFooter().then(() => {
   document.querySelector(".icon-cart").innerHTML =
     localStorage.getItem("so-cart-quantity") || 0;
-}
+});
 
-main();
