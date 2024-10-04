@@ -5,7 +5,7 @@ function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
       <img
-        src="${item.Image}"
+        src="${item.Images.PrimarySmall}"
         alt="${item.Name}"
       />
     </a>
@@ -28,13 +28,13 @@ export default class ShoppingCart {
     }
 
     renderCartContents() {
-        const cartItems = getLocalStorage("so-cart");
+        const cartItems = getLocalStorage(this.key);
         let htmlItems;
 
         // If items exist in the cart, create a template and inject it into the HTML
         if (cartItems != null) {
             htmlItems = cartItems.map((item) => cartItemTemplate(item));
-            document.querySelector(".product-list").innerHTML = htmlItems.join("");
+            document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
             document.querySelector(".icon-cart").innerHTML =
                 localStorage.getItem("so-cart-quantity") || 0;
         }
