@@ -37,6 +37,7 @@ function calcTotal() {
 function displayCheckoutTotal() {
   if (isCartFilled()) {
     let total = calcTotal();
+    total = total.toFixed(2);
     document.querySelector(".cart-total").innerHTML = `<b>Total: $${total}</b>`;
     document.querySelector(".cart-footer-hide").style.visibility = "visible";
   }
