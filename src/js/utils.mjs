@@ -48,17 +48,18 @@ export function renderWithTemplate(template, parent, data, callback) {
 }
 
 export async function loadTemplate(path) {
-  const html = await fetch(path).then(response => response.text());
-  const template = document.createElement("template");
+  const response = await fetch(path);
+  const html = await response.text();
+  const template = document.createElement('template');
   template.innerHTML = html;
   return template;
 }
 
 export async function loadHeaderFooter() {
-  let headerTemplate = await loadTemplate("/partials/header.html");
-  let footerTemplate = await loadTemplate("/partials/footer.html");
-  let header = document.querySelector("#header");
-  let footer = document.querySelector("#footer");
-  renderWithTemplate(headerTemplate.innerHTML, header);
-  renderWithTemplate(footerTemplate.innerHTML, footer);
+  const headerContent = await loadTemplate("/partials/header.html");
+  const footerContent = await loadTemplate("/partials/footer.html");
+  const headerElement = document.querySelector("#dynamic-header");
+  const footerElement = document.querySelector("#dynamic-footer");
+  renderWithTemplate(headerContent.innerHTML, headerElement);
+  renderWithTemplate(footerContent.innerHTML, footerElement);
 }
