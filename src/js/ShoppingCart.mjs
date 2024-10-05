@@ -13,8 +13,9 @@ function cartItemTemplate(item) {
       <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-      <p class='cart-card__quantity'>qty: ${item.quantity}</p>
+    <p class='cart-card__quantity'>qty: ${item.quantity}</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
+    <p class="cart-card__total_price">Total: $${item.TotalPrice}</p>
     <span class="removeItemBtn" data-id="${item.Id}">❌</span>
   </li>`;
 
@@ -52,19 +53,22 @@ export default class ShoppingCart {
 
         function calcTotal() {
             let total = 0;
-            for (const element of getLocalStorage("so-cart")) {
-                total += element.FinalPrice;
+            const itemsInCart = getLocalStorage("so-cart");
+            for (const element of itemsInCart) {
+                total += element.TotalPrice;
             }
             return total;
         }
 
         // Make the total visible if the cart is filled
         function displayCheckoutTotal() {
+            let total = 0;
             if (isCartFilled()) {
-                let total = calcTotal();
-                document.querySelector(".cart-total").innerHTML = `<b>Total: $${total.toFixed(2)}</b>`;
-                document.querySelector(".cart-footer-hide").style.visibility = "visible";
+                total = calcTotal();
             }
+            total = total.toFixed(2);
+            document.querySelector(".cart-total").innerHTML = `<b>Total: $${total}</b>`;
+            document.querySelector(".cart-footer-hide").style.visibility = "visible";
         }
 
         displayCheckoutTotal();
