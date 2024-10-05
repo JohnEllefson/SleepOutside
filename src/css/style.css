@@ -261,3 +261,56 @@ header a {
   cursor: pointer;
   font-size: 12px;
 }
+
+.products .product-grid .product-grid-item a p {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* Search Bar */
+
+#search-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: row;
+  width: 100%;
+  padding: 0 10px;
+}
+
+#search-box {
+  width: 50%;
+  height: 50%;
+  border-radius: 5px;
+  border: #ccc 2px solid;
+  font-size: 15px;
+  padding: 0 10px;
+}
+
+#search-button {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 10%;
+}
+
+#search-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 700px) {
+  #search-box {
+    width: 65%;
+  }
+
+  #search-button {
+    width: 20%;
+  }
+}
