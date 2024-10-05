@@ -122,6 +122,11 @@ button {
 .products {
   padding: 0.5em;
 }
+#sort-products {
+  background-color: #f58727;
+  padding: 5px;
+  border: 2px solid var(--dark-grey);
+}
 .product-list {
   display: flex;
   flex-flow: row wrap;
