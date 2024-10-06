@@ -27,10 +27,15 @@ async function main() {
   // Initialize the product list and display the products
   await productList.init();
 
-  document.getElementById("sort-products").addEventListener("change", (event) => {
-    const sortedProducts = sortProducts(productList.products, event.target.value);
-    productList.renderList(sortedProducts); // Assuming renderList is defined in ProductList
-  });
+  document
+    .getElementById("sort-products")
+    .addEventListener("change", (event) => {
+      const sortedProducts = sortProducts(
+        productList.products,
+        event.target.value,
+      );
+      productList.renderList(sortedProducts); // Assuming renderList is defined in ProductList
+    });
 
   document.querySelector(".icon-cart").innerHTML =
     localStorage.getItem("so-cart-quantity") || 0;
@@ -55,7 +60,6 @@ function sortProducts(products, criteria) {
     return products.sort((a, b) => a.Brand.Name.localeCompare(b.Brand.Name));
   } else if (criteria === "discount") {
     return products.sort((a, b) => b.Discount - a.Discount);
-
   }
 }
 

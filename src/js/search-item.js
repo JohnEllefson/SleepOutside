@@ -18,7 +18,7 @@ const normalizeKeyword = (keyword) => {
   return categoryMap[normalizedKeyword] || normalizedKeyword; //This verifies if the normalized word (plural and with dashes, exists in the object, it if does it returns it, otherwise, it will return the normalized Word)
 };
 
-export default function searchItem()    {
+export default function searchItem() {
   const searchButton = document.querySelector("#search-button");
   const searchBox = document.querySelector("#search-box");
 
@@ -39,12 +39,12 @@ export default function searchItem()    {
         throw new Error(`No items found for: ${keyword}`);
       }
 
-    //   console.log(product);
+      //   console.log(product);
 
       window.location.href = `/product-listing/index.html?catagory=${normalizedKeyWord}`;
     } catch (error) {
       alert(error.message);
-    //   console.error(error);
+      //   console.error(error);
     }
   };
 
