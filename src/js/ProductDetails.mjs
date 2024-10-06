@@ -42,15 +42,21 @@ export default class ProductDetails {
           cartArray = [];
       }
 
-      const itemsInCart = cartArray.find(item => item.id === this.product.Id);
+      const cartItem = cartArray.find(item => item.Id === this.product.Id);
 
-      if (itemsInCart) {
-        itemsInCart.quantity += 1;
+      if (cartItem) {
+        cartArray[cartArray.indexOf(cartItem)].quantity += 1;
       }
       else {
         this.product.quantity = 1;
         cartArray.push(this.product);
-      }    
+      }
+
+      if (cartArray) {
+        cartArray.forEach((item) => {
+        item.TotalPrice = Number((item.FinalPrice * item.quantity).toFixed(2));
+        });
+      }
 
       setLocalStorage("so-cart", cartArray);
 
