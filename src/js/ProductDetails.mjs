@@ -10,7 +10,7 @@ function productDetailsTemplate(product) {
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${product.FinalPrice}</p>
-    <p class="discount">${product.Discount}% Off!</p>
+    <p class="discount">$${(product.FinalPrice * .25).toFixed(2)} Off!</p>
     <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
     ${product.DescriptionHtmlSimple}
