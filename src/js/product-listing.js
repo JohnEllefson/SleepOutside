@@ -1,6 +1,7 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 import { loadHeaderFooter, getParams } from "./utils.mjs";
+import searchItem from "./search-item.js";
 
 async function main() {
   await loadHeaderFooter();
@@ -33,6 +34,8 @@ async function main() {
 
   document.querySelector(".icon-cart").innerHTML =
     localStorage.getItem("so-cart-quantity") || 0;
+
+  searchItem();
 }
 
 // Capitalize the first letter of a string
