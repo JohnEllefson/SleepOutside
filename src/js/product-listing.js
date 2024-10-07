@@ -59,7 +59,13 @@ function sortProducts(products, criteria) {
   } else if (criteria === "brand") {
     return products.sort((a, b) => a.Brand.Name.localeCompare(b.Brand.Name));
   } else if (criteria === "discount") {
-    return products.sort((a, b) => b.Discount - a.Discount);
+    return products
+      .map(product => {
+        // So this calculates the discount percentage once and adds it as a property
+        const discount = ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100;
+        return { ...product, discount };
+      })
+      .sort((a, b) => a.discount - b.discount);
   }
 }
 
