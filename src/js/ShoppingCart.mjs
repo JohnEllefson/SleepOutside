@@ -1,6 +1,5 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, calculateCartTotal } from "./utils.mjs";
 import { saveCartQuantity } from "./ProductDetails.mjs";
-
 function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
@@ -53,16 +52,17 @@ export default class ShoppingCart {
 
         function calcTotal() {
             let total = 0;
-            const itemsInCart = getLocalStorage("so-cart");
+            const itemsInCart = getLocalStorage(this.key);
             for (const element of itemsInCart) {
                 total += element.TotalPrice;
             }
             return total;
+            return calculateCartTotal(itemsInCart);
         }
 
         // Make the total visible if the cart is filled
         function displayCheckoutTotal() {
-            let total = 0;
+            const total = this.calcTotal();
             if (isCartFilled()) {
                 total = calcTotal();
             }
@@ -76,7 +76,7 @@ export default class ShoppingCart {
 
     removeItem(event) {
         const itemId = event.target.dataset.id;
-        const currentItems = getLocalStorage("so-cart");
+        const currentItems = getLocalStorage(this.key);
 
         if (currentItems) {
             //If we have matching id's, it will return an index, if there is not match, it will return -1 meaning not found
@@ -89,7 +89,7 @@ export default class ShoppingCart {
                 currentItems.splice(itemIndex, 1);
             }
 
-            localStorage.setItem("so-cart", JSON.stringify(currentItems));
+            localStorage.setItem(this.key, JSON.stringify(currentItems));
             saveCartQuantity(currentItems);
         }
 

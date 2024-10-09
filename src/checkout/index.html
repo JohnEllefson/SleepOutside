@@ -58,13 +58,18 @@
           <label for="sec-code">Security Code</label>
           <input type="number" name="sec-code" id="sec-code" required>
         </fieldset>
-
+        <fieldset class="cartSummary">
+          <legend>Checkout Summary</legend>
+          <label for="quantity">Number of Items: <span id="quantity"></span></label>
+            
+          <label for="cart-subtotal">Subtotal: <span class="cart-subtotal"></span></label>
+            
+        </fieldset>
         <button type="submit" id="submit-btn">Submit Order</button>
-
+        
       </form>
 
-      <div>Number of Items:<span id="quantity"></span></div>
-      <div>Subtotal:<span class="cart-subtotal"></span></div>
+      
     </main>
     <footer id="dynamic-footer"></footer>
   </body>
