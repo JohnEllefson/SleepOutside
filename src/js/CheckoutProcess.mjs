@@ -1,5 +1,4 @@
 import { getLocalStorage } from "./utils.mjs";
-import ShoppingCart from "./ShoppingCart.mjs";
 
 
 export default class CheckoutProcess {
@@ -16,19 +15,20 @@ export default class CheckoutProcess {
     init() {
         this.list = getLocalStorage(this.key);
         this.calculateItemSummary();
+        this.calculateSubtotal();
+        this.calculateOrdertotal();
     }
 
     calculateItemSummary() {
         // calculate and display the total amount of the items in the cart, and the number of items.
-            const itemsQuantity = document.querySelector('#quantity');
-            if (itemsQuantity) {
-                let cartItems = getLocalStorage('so-cart');
-                let totalQuantity = 0;
-                if (cartItems) {
-                    totalQuantity = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
-                }
-                
-                itemsQuantity.innerHTML = totalQuantity;
+        const itemsQuantity = document.querySelector('#quantity');
+        if (itemsQuantity) {
+            let cartItems = getLocalStorage('so-cart');
+            if (cartItems) {
+                this.itemTotal = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
+            }
+
+            itemsQuantity.innerHTML = this.itemTotal;
         }
     }
 
@@ -39,18 +39,41 @@ export default class CheckoutProcess {
         for (const element of itemsInCart) {
             total += element.TotalPrice;
         }
-        subtotal.innerHTML = total;
+        this.total = total;  
+        if (subtotal) {
+            subtotal.innerHTML = `$${this.total.toFixed(2)}`;  
+        }
     }
 
     calculateOrdertotal() {
         // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
 
+        //Shipping
+        if (this.itemTotal > 0) {
+            this.shipping = 10;
+
+            if (this.itemTotal > 1) {
+                this.shipping += (this.itemTotal - 1) * 2;
+            }
+
+            const shippingTotal = document.querySelector("#shipping")
+            shippingTotal.innerHTML = ` $${this.shipping}`
+        }
+
+        //Tax
+        const taxElement = document.querySelector("#tax");
+        this.tax = this.total * 0.06;
+        taxElement.innerHTML = ` $${this.tax.toFixed(2)}`;        
+
         // display the totals.
+
         this.displayOrderTotals();
     }
 
     displayOrderTotals() {
         // once the totals are all calculated display them in the order summary page
-
+        const orderTotalDisplay = document.querySelector("#order-total");
+        const totalCalulated = this.total + this.shipping + this.tax
+        orderTotalDisplay.innerHTML = ` $${totalCalulated.toFixed(2)}`;
     }
 }
