@@ -46,14 +46,14 @@ export default class ShoppingCart {
         });
 
         function isCartFilled() {
-            if (getLocalStorage("so-cart") != undefined) {
+            if (getLocalStorage(this.key) != undefined) {
                 return true;
             }
         }
 
         function calcTotal() {
             let total = 0;
-            const itemsInCart = getLocalStorage("so-cart");
+            const itemsInCart = getLocalStorage(this.key);
             for (const element of itemsInCart) {
                 total += element.TotalPrice;
             }
@@ -76,7 +76,7 @@ export default class ShoppingCart {
 
     removeItem(event) {
         const itemId = event.target.dataset.id;
-        const currentItems = getLocalStorage("so-cart");
+        const currentItems = getLocalStorage(this.key);
 
         if (currentItems) {
             //If we have matching id's, it will return an index, if there is not match, it will return -1 meaning not found
@@ -89,7 +89,7 @@ export default class ShoppingCart {
                 currentItems.splice(itemIndex, 1);
             }
 
-            localStorage.setItem("so-cart", JSON.stringify(currentItems));
+            localStorage.setItem(this.key, JSON.stringify(currentItems));
             saveCartQuantity(currentItems);
         }
 
