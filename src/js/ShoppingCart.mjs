@@ -50,19 +50,14 @@ export default class ShoppingCart {
             }
         }
 
-        function calcTotal() {
-            let total = 0;
+        const calcTotal = () => {
             const itemsInCart = getLocalStorage(this.key);
-            for (const element of itemsInCart) {
-                total += element.TotalPrice;
-            }
-            return total;
             return calculateCartTotal(itemsInCart);
-        }
+        };
 
         // Make the total visible if the cart is filled
         function displayCheckoutTotal() {
-            const total = this.calcTotal();
+            let total = calcTotal();
             if (isCartFilled()) {
                 total = calcTotal();
             }

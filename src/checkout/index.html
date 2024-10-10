@@ -19,59 +19,77 @@
         <h2>Review & Place your Order</h2>
       </section>
 
-      <form action="" id="checkout-form">
-
+      <form action="" id="checkout-form" name="checkout">
         <fieldset>
           <legend>Customer Name</legend>
           <label for="fname">First Name</label>
-          <input type="text" placeholder="Your First Name" name="fname" id="fname" required>
+          <input
+            type="text"
+            placeholder="Your First Name"
+            name="fname"
+            id="fname"
+            required
+          />
 
           <label for="lname">Last Name</label>
-          <input type="text" placeholder="Your Last Name" name="lname" id="lname" required>
+          <input
+            type="text"
+            placeholder="Your Last Name"
+            name="lname"
+            id="lname"
+            required
+          />
         </fieldset>
 
         <fieldset>
           <legend>Address</legend>
 
           <label for="staddress">Street Address</label>
-          <input type="text" name="staddress" id="staddress" required>
+          <input type="text" name="staddress" id="staddress" required />
 
           <label for="city">City</label>
-          <input type="text" name="city" id="city" required>
+          <input type="text" name="city" id="city" required />
 
           <label for="state">State</label>
-          <input type="text" name="state" id="state" required>
+          <input type="text" name="state" id="state" required />
 
           <label for="zipcode">ZIP Code</label>
-          <input type="number" name="zipcode" id="zipcode" required>
+          <input type="number" name="zipcode" id="zipcode" required />
         </fieldset>
 
         <fieldset>
           <legend>Payment</legend>
 
           <label for="credit-card">Credit Card Number</label>
-          <input type="number" name="credit-card" id="credit-card" required>
+          <input type="number" name="credit-card" id="credit-card" required />
 
           <label for="exp-date">Expiration Date</label>
-          <input type="text" name="exp-date" id="exp-date" placeholder="MM/YY" required>
+          <input
+            type="text"
+            name="exp-date"
+            id="exp-date"
+            placeholder="MM/YY"
+            required
+          />
 
           <label for="sec-code">Security Code</label>
-          <input type="number" name="sec-code" id="sec-code" required>
+          <input type="number" name="sec-code" id="sec-code" required />
         </fieldset>
         <fieldset class="cartSummary">
           <legend>Checkout Summary</legend>
-          <label for="quantity">Number of Items: <span id="quantity"></span></label>
-            
-          <label for="cart-subtotal">Subtotal: <span class="cart-subtotal"></span></label>
-          <div>Shipping:<span id="shipping"></span></div>
-          <div>Tax:<span id="tax"></span></div>
-          <div>Order Total:<span id="order-total"></span></div>
-            
+          <label for="quantity"
+            >Number of Items: <span id="quantity"></span
+          ></label>
+
+          <label for="cart-subtotal"
+            >Subtotal: <span class="cart-subtotal"></span
+          ></label>
+          <label>Shipping:<span id="shipping"></span></label>
+          <label>Tax:<span id="tax"></span></label>
+          <label>Order Total:<span id="order-total"></span></label>
         </fieldset>
         <button type="submit" id="submit-btn">Submit Order</button>
-        
       </form>
-
     </main>
     <footer id="dynamic-footer"></footer>
   </body>

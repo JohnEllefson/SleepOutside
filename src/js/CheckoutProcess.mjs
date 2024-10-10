@@ -1,5 +1,30 @@
 import { getLocalStorage } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
+const services = new ExternalServices();
+function formDataToJSON(formElement) {
+    const formData = new FormData(formElement),
+        convertedJSON = {};
+
+    formData.forEach(function (value, key) {
+        convertedJSON[key] = value;
+    });
+
+    return convertedJSON;
+}
+
+function packageItems(items) {
+    const simplifiedItems = items.map((item) => {
+        console.log(items)
+        return {
+            id: item.id,
+            price: item.FinalPrice,
+            name: item.Name,
+            quantity: 1,
+        };
+    })
+    return simplifiedItems;
+}
 
 export default class CheckoutProcess {
     constructor(key, outputSelector) {
@@ -39,9 +64,9 @@ export default class CheckoutProcess {
         for (const element of itemsInCart) {
             total += element.TotalPrice;
         }
-        this.total = total;  
+        this.total = total;
         if (subtotal) {
-            subtotal.innerHTML = `$${this.total.toFixed(2)}`;  
+            subtotal.innerHTML = `$${this.total.toFixed(2)}`;
         }
     }
 
@@ -63,7 +88,7 @@ export default class CheckoutProcess {
         //Tax
         const taxElement = document.querySelector("#tax");
         this.tax = this.total * 0.06;
-        taxElement.innerHTML = ` $${this.tax.toFixed(2)}`;        
+        taxElement.innerHTML = ` $${this.tax.toFixed(2)}`;
 
         // display the totals.
 
@@ -76,4 +101,36 @@ export default class CheckoutProcess {
         const totalCalulated = this.total + this.shipping + this.tax
         orderTotalDisplay.innerHTML = ` $${totalCalulated.toFixed(2)}`;
     }
+
+    async checkout() {
+        const formElement = document.forms["checkout"];
+        const json = formDataToJSON(formElement);
+
+        json.orderDate = new Date();
+        json.orderTotal = this.orderTotal;
+        json.tax = this.tax;
+        json.shipping = this.shipping;
+        json.items = packageItems(this.list);
+
+
+        json.cardNumber = formElement["credit-card"].value;
+        json.expiration = formElement["exp-date"].value;
+
+        json.street = formElement["staddress"].value;
+        json.city = formElement["city"].value;
+        json.state = formElement["state"].value;
+        json.zip = formElement["zipcode"].value;
+
+
+        console.log(json);
+        try {
+            const res = await services.checkout(json);
+            console.log(res);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
 }
+
+

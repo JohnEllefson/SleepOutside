@@ -1,6 +1,6 @@
-import ProductData from "./ProductData.mjs";
+import ExternalService from "./ExternalServices.mjs";
 
-const productData = new ProductData();
+const externalServices = new ExternalService();
 
 const categoryMap = {
   // This pluralizes the words as found in the data
@@ -33,7 +33,7 @@ export default function searchItem() {
       const normalizedKeyWord = normalizeKeyword(keyword);
       // console.log(normalizedKeyWord);
 
-      const product = await productData.getData(normalizedKeyWord);
+      const product = await externalServices.getData(normalizedKeyWord);
 
       if (product.length === 0) {
         throw new Error(`No items found for: ${keyword}`);

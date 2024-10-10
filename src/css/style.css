@@ -234,26 +234,26 @@ button {
 }
 #checkout-form legend {
   color: #445ba9;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 #checkout-form label {
   display: block;
   padding-top: 1rem;
-  color: #22577A;
-  font-size: .9rem;
+  color: #22577a;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 #checkout-form li {
   display: block;
   padding-top: 1rem;
-  color: #22577A;
-  font-size: .9rem;
+  color: #22577a;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 #checkout-form div {
   padding-top: 1rem;
   color: #445ba9;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 #checkout-form input[type="text"],
 #checkout-form input[type="email"],
@@ -277,8 +277,8 @@ button {
 }
 #checkout-form input[type="submit"] {
   border: none;
-  background-image: linear-gradient(#367caa, #22577A);
-  color: #EEE;
+  background-image: linear-gradient(#367caa, #22577a);
+  color: #eee;
   border-radius: 6px;
   padding: 0.8rem;
   width: 96%;
@@ -293,7 +293,7 @@ button {
   border-right: solid 8px green;
 }
 #checkout-form input:focus {
-  border: #C7F9CC;
+  border: #c7f9cc;
   border-radius: 6px;
 }
 .thank-you-title {
@@ -323,25 +323,25 @@ button {
   max-width: 400px;
 }
 .cartSummarylist::before {
-  content: '👍';
+  content: "👍";
   padding: 10px;
 }
 .price {
   font-weight: bold;
-  color: #007BFF;
+  color: #007bff;
   font-size: 2rem;
   padding-left: 30px;
 }
 #cartSummary h1 {
   color: #445ba9;
   font-size: 2rem;
-  padding: 0 .5rem;
-  text-shadow: 0 0 5px #38A3A5;
+  padding: 0 0.5rem;
+  text-shadow: 0 0 5px #38a3a5;
 }
 #cartSummary h2 {
   color: black;
   font-size: 1.3rem;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   max-width: 330px;
 }
 

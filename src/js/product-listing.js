@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalService from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
 import { loadHeaderFooter, getParams } from "./utils.mjs";
 import searchItem from "./search-item.js";
@@ -6,7 +6,7 @@ import searchItem from "./search-item.js";
 async function main() {
   await loadHeaderFooter();
 
-  // Create an instance of a ProductData object
+  // Create an instance of a externalServices object
   const productType = getParams("catagory");
 
   // Capitalize the first letter of the product type
@@ -17,10 +17,10 @@ async function main() {
   section.textContent = capitalizedProductType;
 
   // Gather data about the products of the specified type
-  const productData = new ProductData();
+  const externalServices = new ExternalService();
   const productList = new ProductList(
     productType,
-    productData,
+    externalServices,
     document.querySelector(".product-list"),
   );
 
