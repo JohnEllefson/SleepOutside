@@ -1,5 +1,3 @@
-import { getLocalStorage, calculateCartTotal } from "./utils.mjs";
-import ShoppingCart from "./ShoppingCart.mjs";
 import { getLocalStorage } from "./utils.mjs";
 
 
@@ -33,6 +31,7 @@ export default class CheckoutProcess {
             itemsQuantity.innerHTML = this.itemTotal;
         }
     }
+
     calculateSubtotal() {
         let total = 0;
         const subtotal = document.querySelector(".cart-subtotal")
@@ -48,10 +47,6 @@ export default class CheckoutProcess {
 
     calculateOrdertotal() {
         // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
-        const itemCount = getLocalStorage(this.key).reduce((sum, item) => sum + item.quantity, 0);
-        this.calculateShipping(itemCount);
-        this.calculateTax();
-        this.orderTotal = this.itemTotal + this.shipping + this.tax;
 
         //Shipping
         if (this.itemTotal > 0) {
@@ -77,10 +72,6 @@ export default class CheckoutProcess {
 
     displayOrderTotals() {
         // once the totals are all calculated display them in the order summary page
-        document.querySelector(`${this.outputSelector} .total`).textContent = `$${this.orderTotal.toFixed(2)}`;
-        const total = this.calcTotal();
-        document.querySelector(".cart-total").innerHTML = `<b>Total: $${total}</b>`;
-        document.querySelector(".cart-footer-hide").style.visibility = "visible";
         const orderTotalDisplay = document.querySelector("#order-total");
         const totalCalulated = this.total + this.shipping + this.tax
         orderTotalDisplay.innerHTML = ` $${totalCalulated.toFixed(2)}`;
