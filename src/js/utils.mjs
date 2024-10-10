@@ -63,3 +63,7 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerContent.innerHTML, headerElement);
   renderWithTemplate(footerContent.innerHTML, footerElement);
 }
+
+export function calculateCartTotal(cartItems) {
+  return cartItems.reduce((total, item) => total + item.TotalPrice, 0);
+}
