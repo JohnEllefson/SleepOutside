@@ -26,7 +26,7 @@ export default class ProductList {
       this.products = await this.dataSource.getData(this.category);
        // create an array of products from the data source
              // Use list for rendering if you want
-             this.renderList(this.products);                               
+      this.renderList(this.products);                               
     }
     renderList(products) {
       this.listElement.innerHTML = ''; 
