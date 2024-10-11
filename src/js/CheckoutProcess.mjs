@@ -1,5 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
+import { alertMessage } from './utils.mjs';
+
 
 const services = new ExternalServices();
 function formDataToJSON(formElement) {
@@ -42,6 +44,20 @@ export default class CheckoutProcess {
         this.calculateItemSummary();
         this.calculateSubtotal();
         this.calculateOrdertotal();
+
+        document.querySelector("#submit-btn").addEventListener("click", (e) => {
+            e.preventDefault();  // this prevents the form from submitting normally
+            // this gets the form element
+            const myForm = document.forms[0];
+            // Check if the form is valid
+            const chk_status = myForm.checkValidity();
+            // Report any problems to the user (displays error messages if needed)
+            myForm.reportValidity();
+            // If the form is valid, proceed with checkout
+            if (chk_status) {
+                this.checkout();  // Call the checkout method inside this class
+            }
+        });
     }
 
     calculateItemSummary() {
@@ -126,11 +142,24 @@ export default class CheckoutProcess {
         try {
             const res = await services.checkout(json);
             console.log(res);
+
+            // this clears the cart
+            localStorage.removeItem("so-cart");
+            // this redirects to success page
+            window.location.href = "/checkout/success.html";
+
         } catch (err) {
             console.log(err);
+            alertMessage("Checkout failed: " + err.message);
+            // displayErrorMessageToUser("Checkout failed: " + err.message);
         }
-    }
 
+    }
+    // displayErrorMessageToUser(message) {
+    //     const errorElement = document.getElementById("error-message");
+    //     errorElement.innerText = message;
+    //     errorElement.style.display = "block";
+    // }
 }
 
 
