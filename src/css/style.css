@@ -86,11 +86,14 @@ button {
   background-color: var(--secondary-color);
   color: white;
   margin: auto;
-  display: block;
-  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid white;
   font-size: var(--large-font);
   cursor: pointer;
 }
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -111,6 +114,41 @@ button {
 }
 
 /* End cart icon styles */
+/* -------------------------------------- */
+/* --------- start wishlist icon with animation-------- */
+.wishlist {
+  padding: 1em;
+  position: relative;
+  text-align: center;
+  animation: myanima 10s infinite;
+}
+
+.wishlist svg {
+  width: 30px;
+}
+.wishlist:hover svg {
+  fill: gray;
+}
+@keyframes myanima {
+	0% {
+		transform: translateY(0);
+		background-color: rgb(15, 34, 92);
+    fill: #ffcc00;
+	}
+  50% {
+		transform: translateX(-100px) translateY(0px);
+		background-color: #ffcc00;
+    fill: rgb(15, 34, 92);
+		rotate: 50%;
+	}
+	100% {
+		transform: translateX(0px);
+		background-color: rgb(15, 34, 92);
+		rotate: 50%;
+    fill: #ffcc00;
+	}
+}
+/* ---------end wishlist icon ---------- */
 
 .mission {
   padding: 0 0.5em;
@@ -467,3 +505,4 @@ a {
     width: 20%;
   }
 }
+
