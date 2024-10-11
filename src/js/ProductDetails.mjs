@@ -17,6 +17,7 @@ function productDetailsTemplate(product) {
     </p>
     <div class="product-detail__add">
       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+      <button id="addToWishlist" class="icon-wishlist" data-id="${product.Id}">⭐ Add to Wishlist</button>
     </div></section>`;
 }
 
@@ -34,6 +35,8 @@ export default class ProductDetails {
     document
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
+
+    document.getElementById("addToWishlist").addEventListener("click", this.addToWishlist.bind(this));
   }
 
   addToCart() {
@@ -64,6 +67,23 @@ export default class ProductDetails {
 
       saveCartQuantity(cartArray);
   }
+
+  addToWishlist() {
+    let wishlistArray = getLocalStorage("so-wishlist");
+    if(!Array.isArray(wishlistArray)) {
+      wishlistArray = [];
+    }
+
+    const wishlistItem = wishlistArray.find(item => item.id === this.product.Id);
+
+    if (!wishlistItem) {
+      wishlistArray.push(this.product);
+      setLocalStorage("so-wishlist", wishlistArray);
+      alert("Item successfully added to your Wish List");
+    } else {
+      alert("Hey guess what? That item is already in your Wish List.");
+    }
+  }  
 
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
