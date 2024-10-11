@@ -67,3 +67,29 @@ export async function loadHeaderFooter() {
 export function calculateCartTotal(cartItems) {
   return cartItems.reduce((total, item) => total + item.TotalPrice, 0);
 }
+export function alertMessage(message, scroll = true) {
+  // this creates a new div for the alert
+  const alert = document.createElement("div");
+  // now we add a class to style the alert
+  alert.classList.add("alert");
+  // Set the inner HTML of the alert (message + close button)
+  alert.innerHTML = `
+    <span>${message}</span>
+    <button class="alert-close">X</button>
+  `;
+  // Adds the alert to the top of the main element
+  const main = document.querySelector("main");
+  main.prepend(alert);  // Inserts the alert at the top
+  // Scrolls to the top of the page if the scroll option is true
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
+  // this adds an event listener for the close button
+  alert.addEventListener("click", function (e) {
+    // now it checks if the user clicked the "X" button
+    if (e.target && e.target.classList.contains("alert-close")) {
+      // finaly this removes the alert from the DOM
+      main.removeChild(alert);
+    }
+  });
+}

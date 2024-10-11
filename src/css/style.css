@@ -224,6 +224,25 @@ button {
   grid-column: 3;
   font-weight: bold;
 }
+.alert {
+  background-color: #f44336; 
+  color: white; 
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
 /*------------- Checkout form  --------- */
 /* ------------------------------------ */
 #checkout-form fieldset {
@@ -343,6 +362,9 @@ button {
   font-size: 1.3rem;
   padding: 0 0.5rem;
   max-width: 330px;
+}
+#order-total {
+  font-size: 2rem;
 }
 
 @media screen and (min-width: 500px) {
