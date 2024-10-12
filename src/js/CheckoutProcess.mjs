@@ -137,14 +137,13 @@ export default class CheckoutProcess {
         json.state = formElement["state"].value;
         json.zip = formElement["zipcode"].value;
 
-
-        console.log(json);
         try {
             const res = await services.checkout(json);
             console.log(res);
 
             // this clears the cart
             localStorage.removeItem("so-cart");
+            localStorage.removeItem("so-cart-quantity");
             // this redirects to success page
             window.location.href = "/checkout/success.html";
 
@@ -155,11 +154,6 @@ export default class CheckoutProcess {
         }
 
     }
-    // displayErrorMessageToUser(message) {
-    //     const errorElement = document.getElementById("error-message");
-    //     errorElement.innerText = message;
-    //     errorElement.style.display = "block";
-    // }
 }
 
 
