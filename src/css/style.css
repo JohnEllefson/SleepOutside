@@ -13,23 +13,28 @@
   --small-font: 0.8em;
   --large-font: 1.2em;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--dark-grey);
 }
+
 img {
   max-width: 100%;
 }
+
 header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
 }
+
 .logo {
   line-height: 60px;
   width: 245px;
@@ -39,23 +44,28 @@ header {
   text-align: right;
   font-family: var(--font-headline);
 }
+
 .logo img {
   width: 60px;
   height: 60px;
 }
+
 .logo a {
   text-decoration: none;
   color: var(--font-body);
 }
+
 .hero {
   position: relative;
 }
+
 .hero .logo {
   position: absolute;
   left: calc(50% - 60px);
   bottom: -10px;
   background-color: white;
 }
+
 .logo--square {
   font-size: var(--small-font);
   width: 110px;
@@ -68,14 +78,17 @@ header {
   align-items: center;
   line-height: 1;
 }
+
 .logo--square img {
   width: 90px;
   height: 90px;
   margin-top: -1.3em;
 }
-.logo--square > div {
+
+.logo--square>div {
   margin-top: -1.7em;
 }
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -97,6 +110,7 @@ button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
+
 /* End utility classes */
 
 /* Cart icon styles */
@@ -109,6 +123,7 @@ button {
 .cart svg {
   width: 25px;
 }
+
 .cart:hover svg {
   fill: gray;
 }
@@ -126,28 +141,33 @@ button {
 .wishlist svg {
   width: 30px;
 }
+
 .wishlist:hover svg {
   fill: gray;
 }
+
 @keyframes myanima {
-	0% {
-		transform: translateY(0);
-		background-color: rgb(15, 34, 92);
+  0% {
+    transform: translateY(0);
+    background-color: rgb(15, 34, 92);
     fill: #ffcc00;
-	}
+  }
+
   50% {
-		transform: translateX(-100px) translateY(0px);
-		background-color: #ffcc00;
+    transform: translateX(-100px) translateY(0px);
+    background-color: #ffcc00;
     fill: rgb(15, 34, 92);
-		rotate: 50%;
-	}
-	100% {
-		transform: translateX(0px);
-		background-color: rgb(15, 34, 92);
-		rotate: 50%;
+    rotate: 50%;
+  }
+
+  100% {
+    transform: translateX(0px);
+    background-color: rgb(15, 34, 92);
+    rotate: 50%;
     fill: #ffcc00;
-	}
+  }
 }
+
 /* ---------end wishlist icon ---------- */
 
 .mission {
@@ -157,14 +177,17 @@ button {
   max-width: 600px;
   margin: auto;
 }
+
 .products {
   padding: 0.5em;
 }
+
 #sort-products {
   background-color: #f58727;
   padding: 5px;
   border: 2px solid var(--dark-grey);
 }
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
@@ -172,10 +195,13 @@ button {
   list-style-type: none;
   padding: 0;
 }
+
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
 }
+
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
@@ -184,10 +210,53 @@ button {
   border: 1px solid var(--light-grey);
   max-width: 250px;
 }
+
 .product-card h2,
 .product-card h3,
 .product-card p {
   margin: 0.5em 0;
+}
+
+/* .product-card img {
+  max-width: 100%;
+} */
+
+.product-card a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  max-width: 100%;
+}
+
+@media (max-width: 850px) {
+
+  .product-list {
+    justify-content: space-evenly;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .product-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .product-card img {
+    width: 50%;
+    height: auto;
+    min-width: 250px;
+    max-width: 100%;
+  }
+
+  
 }
 
 .discount {
@@ -201,6 +270,7 @@ button {
 .card__name {
   font-size: 1em;
 }
+
 /* End product list card */
 
 .product-detail {
@@ -233,10 +303,13 @@ button {
 .cart-card__image {
   grid-row: 1/3;
   grid-column: 1;
+  text-align: center;
 }
+
 .cart-card p {
   margin-top: 0;
 }
+
 .cart-card .card__name {
   grid-row: 1;
   grid-column: 2;
@@ -262,9 +335,10 @@ button {
   grid-column: 3;
   font-weight: bold;
 }
+
 .alert {
-  background-color: #f44336; 
-  color: white; 
+  background-color: #f44336;
+  color: white;
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 5px;
@@ -281,6 +355,7 @@ button {
   font-size: 20px;
   cursor: pointer;
 }
+
 /*------------- Checkout form  --------- */
 /* ------------------------------------ */
 #checkout-form fieldset {
@@ -289,10 +364,12 @@ button {
   border-radius: 6px;
   padding: 0.5em 2%;
 }
+
 #checkout-form legend {
   color: #445ba9;
   padding: 0 0.5rem;
 }
+
 #checkout-form label {
   display: block;
   padding-top: 1rem;
@@ -300,6 +377,7 @@ button {
   font-size: 0.9rem;
   font-weight: 700;
 }
+
 #checkout-form li {
   display: block;
   padding-top: 1rem;
@@ -307,11 +385,13 @@ button {
   font-size: 0.9rem;
   font-weight: 700;
 }
+
 #checkout-form div {
   padding-top: 1rem;
   color: #445ba9;
   font-size: 0.9rem;
 }
+
 #checkout-form input[type="text"],
 #checkout-form input[type="email"],
 #checkout-form input[type="date"],
@@ -328,10 +408,12 @@ button {
   max-width: 400px;
   appearance: none;
 }
+
 #checkout-form input[type="radio"],
 #checkout-form input[type="checkbox"] {
   margin-right: 6px;
 }
+
 #checkout-form input[type="submit"] {
   border: none;
   background-image: linear-gradient(#367caa, #22577a);
@@ -343,23 +425,29 @@ button {
   margin: -1rem 2% 2rem 2%;
   box-shadow: 1px 1px 4px #999;
 }
+
 #checkout-form input:required {
   border-right: solid 8px red;
 }
+
 #checkout-form input:required:valid {
   border-right: solid 8px green;
 }
+
 #checkout-form input:focus {
   border: #c7f9cc;
   border-radius: 6px;
 }
+
 .thank-you-title {
   padding: 30px;
 }
+
 #message {
   padding: 30px;
   font-size: 1.5rem;
 }
+
 .tick-mark-container {
   display: flex;
   justify-content: center;
@@ -372,6 +460,7 @@ button {
   max-width: 400px;
   margin: -1rem 2% 2rem 2%;
 }
+
 .cartSummary {
   margin: 1rem 0;
   border: 1px solid #ddd;
@@ -379,28 +468,33 @@ button {
   padding: 0.5em 2%;
   max-width: 400px;
 }
+
 .cartSummarylist::before {
   content: "👍";
   padding: 10px;
 }
+
 .price {
   font-weight: bold;
   color: #007bff;
   font-size: 2rem;
   padding-left: 30px;
 }
+
 #cartSummary h1 {
   color: #445ba9;
   font-size: 2rem;
   padding: 0 0.5rem;
   text-shadow: 0 0 5px #38a3a5;
 }
+
 #cartSummary h2 {
   color: black;
   font-size: 1.3rem;
   padding: 0 0.5rem;
   max-width: 330px;
 }
+
 #order-total {
   font-size: 2rem;
 }
@@ -410,9 +504,11 @@ button {
     max-width: 1080px;
     margin: auto;
   }
+
   .mission {
     font-size: 1.2em;
   }
+
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
@@ -505,4 +601,3 @@ a {
     width: 20%;
   }
 }
-
